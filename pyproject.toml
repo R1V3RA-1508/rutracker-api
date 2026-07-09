@@ -1,0 +1,12 @@
+[project]
+name = "rutracker-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "bs4>=0.0.2",
+    "fastapi[standard]>=0.139.0",
+    "httpx>=0.28.1",
+    "pydantic>=2.13.4",
+]

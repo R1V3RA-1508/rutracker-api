@@ -1,0 +1,6 @@
+host = "https://rutracker.org"
+loginUrl = f"{host}/forum/login.php"
+searchUrl = f"{host}/forum/tracker.php"
+threadUrl = f"{host}/forum/viewtopic.php"
+downloadUrl = f"{host}/forum/dl.php"
+ajaxUrl = f"{host}/forum/ajax.php"
