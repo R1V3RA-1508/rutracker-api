@@ -13,11 +13,11 @@ Unofficial Rutracker API based on parsing
 ---
 
 ### TODO:
-[x] Topic fetching
+  - [x] Topic fetching
 
-[ ] Search
+  - [ ] Search
 
-[ ] Login
+  - [ ] Login
 
 
 ----
