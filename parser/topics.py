@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 import httpx
 import re
-from models import Topic, NotExistsError, NetworkError
+from models import Topic
+from models.errors import NotExistsError, NetworkError
 from parser import threadUrl, ajaxUrl
 
 

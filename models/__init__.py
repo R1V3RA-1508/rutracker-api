@@ -2,11 +2,7 @@ from pydantic import BaseModel
 
 # Errors
 
-class NotExistsError(Exception):
-    pass
 
-class NetworkError(Exception):
-    pass
 
 # Models
 
