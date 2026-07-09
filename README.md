@@ -22,8 +22,17 @@ Unofficial Rutracker API based on parsing
 
 ----
 
+### Dev launching:
+```bash
+uv sync
+uv run uvicorn api.app:app --port 8000 --reload
+```
+
+----
+
 ### Login model:
   1. Sending POST rutracker.org/forum/login.php
   2. Fetching bb_session cookie from response
   3. Fetching captcha if needed
+
 
