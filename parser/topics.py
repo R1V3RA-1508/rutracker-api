@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from selectolax.lexbor import LexborHTMLParser
 import httpx
 import re
 from models import Topic
@@ -6,18 +6,14 @@ from models.errors import NotExistsError, NetworkError
 from parser import threadUrl, ajaxUrl
 
 
-def get_bb_session():
-    pass
-
-
-async def getPostBody(client: httpx.AsyncClient, soup: BeautifulSoup):
+async def getPostBody(client: httpx.AsyncClient, tree: LexborHTMLParser):
     try:
-        Id = soup.select('tbody[id^="post_"]')[0].get("id").split("_")[1]
+        Id = tree.css('tbody[id^="post_"]')[0].attrs.get("id").split("_")[1]
     except IndexError:
         raise NotExistsError
     csrf = re.search(
         r"form_token:\s*'([^']+)'",
-        soup.select_one('script:-soup-contains("form_token")').text,
+        tree.css_first('script:lexbor-contains("form_token")').text(),
     ).group(1)
     resp = await client.post(
             ajaxUrl,
@@ -36,13 +32,13 @@ async def getTopic(pageId: int, client: httpx.AsyncClient) -> Topic:
         response = await client.get(f"{threadUrl}?t={pageId}")
         if response.status_code != 200:
             raise NetworkError("Unable to fetch topic")
-        soup = BeautifulSoup(response.text, "html.parser")
+        tree = LexborHTMLParser(response.text)
         try:
-            postBody, Id = await getPostBody(client, soup)
+            postBody, Id = await getPostBody(client, tree)
         except NotExistsError:
             raise NotExistsError("Topic not found")
         return Topic(
-            title=soup.select_one("#topic-title").text, 
+            title=tree.css_first("#topic-title").text(), 
             body=postBody, 
             id=Id
         )
