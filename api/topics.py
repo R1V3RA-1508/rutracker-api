@@ -5,7 +5,7 @@ from models.errors import NetworkError, NotExistsError
 
 router = APIRouter()
 
-@router.get("/api/getTopic")
+@router.get("/api/topic")
 async def get_topic(pageId: int, request: Request) -> Topic:
     client = request.app.state.client
     try:
