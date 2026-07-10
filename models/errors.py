@@ -5,6 +5,9 @@ class NotExistsError(Exception):
 class NetworkError(Exception):
     pass
 
+class InvalidPassError(Exception):
+    pass
+
 
 class NeedCaptcha(Exception):
     def __init__(self, imageUrl, capSid, capField, redirect):

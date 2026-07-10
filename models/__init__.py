@@ -17,3 +17,6 @@ class LoginQuery(BaseModel):
     capSid: Optional[str] = None
     capField: Optional[str] = None
     redirect: Optional[str] = None
+
+class Session(BaseModel):
+    bb_session: str
